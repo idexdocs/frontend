@@ -5,7 +5,7 @@ export default function Index() {
   const router = useRouter();
 
   useEffect(() => {
-    router.push('/secure/athletes');
+    router.push('/login');
   }, [router]);
   return null
   // return (
