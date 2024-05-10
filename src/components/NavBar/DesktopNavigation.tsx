@@ -10,10 +10,18 @@ export default function DesktopNavigation() {
                     src="/images/logo-fort-house.png"
                     width={105}
                     height={70}
-                    alt="company logo"
+                    alt="company logo1"
                 />
             </Link>
             <NavLinks />
+            <div className="p-2 me-3">
+                <Image
+                    src="/images/logo-arabe.png"
+                    width={78}
+                    height={78}
+                    alt="company logo2"
+                />
+            </div>
         </nav>
     );
 }

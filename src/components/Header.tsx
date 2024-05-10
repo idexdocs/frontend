@@ -41,6 +41,7 @@ export default function Header() {
                 <DesktopNavigation />
                 <MobileNavigation />
             </div>
+            <hr />
         </>
     )
 }

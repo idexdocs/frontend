@@ -32,6 +32,12 @@ nav ul li a:hover{
     transition: .3s;
 }
 
+.DesktopNavigation{
+    display: flex !important;
+    align-items: center !important;
+    height: 15vh !important;
+}
+
 .MobileNavigation{
     display: none !important;
 }
@@ -59,5 +65,9 @@ nav ul li a:hover{
         width: 100%;
         background:#3c3c3c;
         z-index: 1;
+    }
+
+    .NavLinks{
+        width: 0% !important;
     }
 }
