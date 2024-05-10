@@ -10,7 +10,7 @@ import Loading from 'react-loading';
 interface Athlete {
   id: number;
   nome: string;
-  posicao: string;
+  posicao_primaria: string;
   data_nascimento: string;
   clube_atual: string;
 }
@@ -58,7 +58,7 @@ export default function AthletesList({ newAthlete }: any) {
   }, [newAthlete]);
 
   const handleEditAthlete = (id: number) => {
-    push(`/secure/athletes/${id}/athleteRelationship`);
+    push(`/secure/athletes/${id}/athleteDetail`);
   };
 
   const handleChangePage = (event: any, newPage: number) => {
@@ -99,7 +99,7 @@ export default function AthletesList({ newAthlete }: any) {
               athletes.map((athlete) => (
                 <tr key={athlete.id}>
                   <td className="table-dark">{athlete.nome}</td>
-                  <td className="table-dark">{athlete.posicao}</td>
+                  <td className="table-dark">{athlete.posicao_primaria}</td>
                   <td className="table-dark">
                     {new Date(athlete.data_nascimento).toLocaleDateString()}
                   </td>

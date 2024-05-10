@@ -6,7 +6,7 @@ import AddButton from "@/components/AddButton";
 import React, { useState } from "react";
 import { Box, Button, Modal, colors, styled } from "@mui/material";
 import Subtitle from "@/components/Subtitle";
-import { createAthlete, uploadImageAthlete } from "@/pages/api/http-service/athletes";
+import { createAthlete, getAthletes, uploadImageAthlete } from "@/pages/api/http-service/athletes";
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -38,10 +38,13 @@ const VisuallyHiddenInput = styled('input')({
 });
 
 export default function Athletes() {
-    const [openCreateAthlete, setOpenCreateAthlete] = useState(false);
-    const [formAvatar, setFormAvatar] = useState("/images/image-user.png");
-    const [formImage, setFormImage]: any = useState();
-    const [newAthlere, setNewAthlere]: any = useState();
+
+  const [openCreateAthlete, setOpenCreateAthlete] = useState(false);
+  const [formAvatar, setFormAvatar] = useState("/images/image-user.png");
+  const [formImage, setFormImage]:any = useState();
+  const [newAthlere, setNewAthlere]:any = useState();
+  const [athletes, setAthletes] = useState<any[]>([]);
+  const [totalRow, setTotalRow]: any = useState();
 
     const [formData, setFormData] = useState({
         nome: '',
@@ -150,9 +153,35 @@ export default function Athletes() {
                 data_fim: '',
             })
         }
-        setNewAthlere(false)
-
-    };
+      }
+      // Faça o que precisar com os dados de atleta salvos
+    } catch (error) {
+      console.error('Error creating athlete:', error);
+    } finally {
+      handleCloseCreateAthlete();
+      setFormData({
+        nome: '',
+        data_nascimento: '',
+        posicao_primaria: '',
+        posicao_secundaria: '',
+        posicao_terciaria: ''
+      })
+      setFormClube({
+        nome: '',
+        data_inicio: '',
+      })
+      setFormContrato({
+        tipo_id: '',
+        data_inicio: '',
+        data_fim: '',
+      })
+    }
+    setNewAthlere(false)
+    location.reload();
+    const athletesData = await getAthletes(1);
+      setAthletes(athletesData.data);
+      setTotalRow(athletesData.total);
+  };
 
     const getImageFileObject = (event: any) => {
         const file = event.target.files[0];
